@@ -1,0 +1,12 @@
+Директория успешно создана: D:\work\Netology\Game\src
+Директория успешно создана: D:\work\Netology\Game\res
+Директория успешно создана: D:\work\Netology\Game\savegames
+Директория успешно создана: D:\work\Netology\Game\temp
+Директория успешно создана: D:\work\Netology\Game\src\main
+Директория успешно создана: D:\work\Netology\Game\src\test
+Файл создан D:\work\Netology\Game\src\main\Main.java
+Файл создан D:\work\Netology\Game\src\main\Utils.java
+Директория успешно создана: D:\work\Netology\Game\res\drawables
+Директория успешно создана: D:\work\Netology\Game\res\vectors
+Директория успешно создана: D:\work\Netology\Game\res\icons
+Файл создан D:\work\Netology\Game\temp\temp.txt
