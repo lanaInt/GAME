@@ -1,42 +1,41 @@
+import src.main.java.GameProgress;
+
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-public class InstallationGame {
+
+public class Main {
     public static void main(String[] args) {
         StringBuilder logTxt = new StringBuilder();
-        File dir = new File("D:\\work\\Netology\\Game");
+        List<String> listDir = new ArrayList<>(List.of(
+                "D:\\work\\Netology\\Game\\New\\src",
+                "D:\\work\\Netology\\Game\\New\\res",
+                "D:\\work\\Netology\\Game\\New\\savegames",
+                "D:\\work\\Netology\\Game\\New\\temp",
+                "D:\\work\\Netology\\Game\\New\\src\\main",
+                "D:\\work\\Netology\\Game\\New\\src\\test",
+                "D:\\work\\Netology\\Game\\New\\res\\drawables",
+                "D:\\work\\Netology\\Game\\New\\res\\vectors",
+                "D:\\work\\Netology\\Game\\New\\res\\icons"));
+        for (String path: listDir) {
+            File file = new File(path);
+            createDir(file,logTxt);
+        }
+
         //В папке Games создайте несколько директорий: src, res, savegames, temp.
-        File dir1 = new File(dir,"\\src");
-        createDir(dir1,logTxt);
-        File dir2 = new File(dir,"\\res");
-        createDir(dir2,logTxt);
-        File dir3 = new File(dir,"\\savegames");
-        createDir(dir3,logTxt);
-        File dir4 = new File(dir,"\\temp");
-        createDir(dir4,logTxt);
-
         //В каталоге src создайте две директории: main, test.
-        File dir11 = new File(dir1,"\\main");
-        createDir(dir11,logTxt);
-        File dir12 = new File(dir1,"\\test");
-        createDir(dir12,logTxt);
-
-        //В подкаталоге main создайте два файла: Main.java, Utils.java.
-        File file1 = new File(dir11,"\\Main.java");
-        createFile(file1,logTxt);
-        File file2 = new File(dir11,"Utils.java");
-        createFile(file2,logTxt);
         //В каталог res создайте три директории: drawables, vectors, icons.
-        File dir21 = new File(dir2,"\\drawables");
-        createDir(dir21,logTxt);
-        File dir22 = new File(dir2,"\\vectors");
-        createDir(dir22,logTxt);
-        File dir23 = new File(dir2,"\\icons");
-        createDir(dir23,logTxt);
+        //В подкаталоге main создайте два файла: Main.java, Utils.java.
+        File file1 = new File("D:\\work\\Netology\\Game\\New\\src\\main","Main.java");
+        createFile(file1,logTxt);
+        File file2 = new File("D:\\work\\Netology\\Game\\New\\src\\main","Utils.java");
+        createFile(file2,logTxt);
+
         //В директории temp создайте файл temp.txt.
-        File fileTemp = new File(dir4,"temp.txt");
+        File fileTemp = new File("D:\\work\\Netology\\Game\\New\\temp","temp.txt");
         createFile(fileTemp,logTxt);
         // Теперь записываем накопленный лог в файл temp.txt с помощью FileWriter
         try (FileWriter writer = new FileWriter(fileTemp);) {
@@ -51,14 +50,14 @@ public class InstallationGame {
         GameProgress gameProgress2 = new GameProgress(85, 5, 2, 204.52);
         GameProgress gameProgress3 = new GameProgress(77, 10, 2, 153.66);
         //Сохранить сериализованные объекты GameProgress в папку savegames из предыдущей задачи.
-        saveGame("D:\\work\\Netology\\Game\\savegames\\save1.dat",gameProgress1);
-        saveGame("D:\\work\\Netology\\Game\\savegames\\save2.dat",gameProgress2);
-        saveGame("D:\\work\\Netology\\Game\\savegames\\save3.dat",gameProgress3);
+        saveGame("D:\\work\\Netology\\Game\\New\\savegames\\save1.dat",gameProgress1);
+        saveGame("D:\\work\\Netology\\Game\\New\\savegames\\save2.dat",gameProgress2);
+        saveGame("D:\\work\\Netology\\Game\\New\\savegames\\save3.dat",gameProgress3);
         //Созданные файлы сохранений из папки savegames запаковать в один архив zip.
         //Удалить файлы сохранений, лежащие вне архива.
-        List<String> filePaths = List.of(new String[]{"D:\\work\\Netology\\Game\\savegames\\save1.dat", "D:\\work\\Netology\\Game\\savegames\\save2.dat", "D:\\work\\Netology\\Game\\savegames\\save3.dat"});
+        List<String> filePaths = List.of(new String[]{"D:\\work\\Netology\\Game\\New\\savegames\\save1.dat", "D:\\work\\Netology\\Game\\New\\savegames\\save2.dat", "D:\\work\\Netology\\Game\\New\\savegames\\save3.dat"});
         System.out.println(filePaths);
-        zipFiles("D:\\work\\Netology\\Game\\savegames\\zip.zip",filePaths);
+        zipFiles("D:\\work\\Netology\\Game\\New\\savegames\\zip.zip",filePaths);
     }
 
     private static void createDir (File pathDir, StringBuilder logTxt) {
