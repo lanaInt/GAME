@@ -21,8 +21,7 @@ public class Main {
                 "D:\\work\\Netology\\Game\\New\\res\\vectors",
                 "D:\\work\\Netology\\Game\\New\\res\\icons"));
         for (String path: listDir) {
-            File file = new File(path);
-            createDir(file,logTxt);
+            createDir(path,logTxt);
         }
 
         //В папке Games создайте несколько директорий: src, res, savegames, temp.
@@ -56,15 +55,16 @@ public class Main {
         //Созданные файлы сохранений из папки savegames запаковать в один архив zip.
         //Удалить файлы сохранений, лежащие вне архива.
         List<String> filePaths = List.of(new String[]{"D:\\work\\Netology\\Game\\New\\savegames\\save1.dat", "D:\\work\\Netology\\Game\\New\\savegames\\save2.dat", "D:\\work\\Netology\\Game\\New\\savegames\\save3.dat"});
-        System.out.println(filePaths);
+        //System.out.println(filePaths);
         zipFiles("D:\\work\\Netology\\Game\\New\\savegames\\zip.zip",filePaths);
     }
 
-    private static void createDir (File pathDir, StringBuilder logTxt) {
-        if (pathDir.mkdir()) {
-            logTxt.append("Директория успешно создана: ").append(pathDir.getAbsolutePath()).append(System.lineSeparator());
+    private static void createDir (String pathDir, StringBuilder logTxt) {
+        File file = new File(pathDir);
+        if (file.mkdir()) {
+            logTxt.append("Директория успешно создана: ").append(file.getAbsolutePath()).append(System.lineSeparator());
         } else {
-            logTxt.append("Не удалось создать директорию. Возможно, она уже существует или есть другие проблемы.").append(pathDir.getAbsolutePath()).append(System.lineSeparator());
+            logTxt.append("Не удалось создать директорию. Возможно, она уже существует или есть другие проблемы.").append(file.getAbsolutePath()).append(System.lineSeparator());
         }
     }
 
