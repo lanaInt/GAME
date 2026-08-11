@@ -1,4 +1,4 @@
-import src.main.java.GameProgress;
+package src.main.java;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -28,14 +28,17 @@ public class Main {
         //В каталоге src создайте две директории: main, test.
         //В каталог res создайте три директории: drawables, vectors, icons.
         //В подкаталоге main создайте два файла: Main.java, Utils.java.
-        File file1 = new File("D:\\work\\Netology\\Game\\New\\src\\main","Main.java");
-        createFile(file1,logTxt);
-        File file2 = new File("D:\\work\\Netology\\Game\\New\\src\\main","Utils.java");
-        createFile(file2,logTxt);
+        List<String> listFile = new ArrayList<>(List.of(
+                "D:\\work\\Netology\\Game\\New\\src\\main\\Main.java",
+                "D:\\work\\Netology\\Game\\New\\src\\main\\Utils.java",
+                "D:\\work\\Netology\\Game\\New\\temp\\temp.txt"));
+        for (String pathFile: listFile) {
+            createFile(pathFile,logTxt);
+        }
 
         //В директории temp создайте файл temp.txt.
-        File fileTemp = new File("D:\\work\\Netology\\Game\\New\\temp","temp.txt");
-        createFile(fileTemp,logTxt);
+        String fileTemp = "D:\\work\\Netology\\Game\\New\\temp\\temp.txt";
+
         // Теперь записываем накопленный лог в файл temp.txt с помощью FileWriter
         try (FileWriter writer = new FileWriter(fileTemp);) {
             writer.write(logTxt.toString());
@@ -68,7 +71,8 @@ public class Main {
         }
     }
 
-    private static void createFile (File fileName, StringBuilder logTxt) {
+    private static void createFile (String pathFile, StringBuilder logTxt) {
+        File fileName = new File(pathFile);
         try {
             if (fileName.createNewFile()) {
                 logTxt.append("Файл создан ").append(fileName.getAbsoluteFile()).append(System.lineSeparator());
